@@ -6,7 +6,7 @@ WORKDIR /src
 
 RUN dotnet restore -s http://nuget.cnova.com/nuget -s https://api.nuget.org/v3/index.json
 
-WORKDIR /src/ApiMockServiceMesh
+WORKDIR /src/ApiMockServiceMesh/ApiMockServiceMesh.csproj
 
 RUN dotnet publish -c Release -o /app
 
