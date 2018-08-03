@@ -1,19 +1,15 @@
-FROM microsoft/aspnetcore:2.0 AS base
-WORKDIR /app
+FROM microsoft/dotnet:2.1-sdk
+ADD . /src
 EXPOSE 8080
 
-FROM microsoft/aspnetcore-build:2.0 AS build
 WORKDIR /src
-COPY ApiMockServiceMesh/ApiMockServiceMesh.csproj ApiMockServiceMesh/
-RUN dotnet restore ApiMockServiceMesh/ApiMockServiceMesh.csproj
-COPY . .
+
+RUN dotnet restore -s http://nuget.cnova.com/nuget -s https://api.nuget.org/v3/index.json
+
 WORKDIR /src/ApiMockServiceMesh
-RUN dotnet build ApiMockServiceMesh.csproj -c Release -o /app
 
-FROM build AS publish
-RUN dotnet publish ApiMockServiceMesh.csproj -c Release -o /app
+RUN dotnet publish -c Release -o /app
 
-FROM base AS final
 WORKDIR /app
-COPY --from=publish /app .
-ENTRYPOINT ["dotnet", "ApiMockServiceMesh.dll"]
+
+ENTRYPOINT dotnet ApiMockServiceMesh.dll

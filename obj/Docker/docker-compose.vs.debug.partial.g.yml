@@ -9,7 +9,7 @@ services:
       - DOTNET_USE_POLLING_FILE_WATCHER=1
       #- NUGET_FALLBACK_PACKAGES=$container_paths_to_fallback_packages_apimockservicemesh$
     volumes:
-      - C:\Users\Benylton Lucas\source\repos\MockServiceMesh\ApiMockServiceMesh:/app
+      - C:\Users\Benylton Lucas\source\repos\ApiMockServiceMesh\ApiMockServiceMesh:/app
       - C:\Users\Benylton Lucas\vsdbg\vs2017u5:/remote_debugger:ro
 #$nuget_volume_mapping_apimockservicemesh$
     entrypoint: tail -f /dev/null
