@@ -4,7 +4,7 @@ EXPOSE 8080
 
 WORKDIR /src
 
-RUN dotnet restore -s http://nuget.cnova.com/nuget -s https://api.nuget.org/v3/index.json
+RUN dotnet restore -s https://api.nuget.org/v3/index.json
 
 WORKDIR /src/ApiMockServiceMesh/ApiMockServiceMesh.csproj
 
