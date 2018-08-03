@@ -1,15 +1,6 @@
-FROM microsoft/dotnet:2.1-sdk
-ADD . /src
-EXPOSE 8080
-
-WORKDIR /src
-
-RUN dotnet restore -s https://api.nuget.org/v3/index.json
-
-WORKDIR /src/ApiMockServiceMesh/ApiMockServiceMesh.csproj
-
-RUN dotnet publish -c Release -o /app
-
-WORKDIR /app
-
-ENTRYPOINT dotnet ApiMockServiceMesh.dll
+FROM microsoft / aspnetcore-build
+WORKDIR / app
+COPY * .csproj.
+RUN DotNet restaurar
+COPY . .
+Executar dotnet publicar --output / out / --configuration Release
